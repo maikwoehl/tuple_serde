@@ -1,0 +1,36 @@
+[
+    1,
+    "LMS",
+    "uri://Customer1/Presystem1",
+    "2020-07-  17T08:30:00Z",
+    "728ba441-4fd6-4b8b-9680-ea4018c2cd2e",
+    "ProvideChargingInformation",
+    {
+        "depotInfoList": [
+            {
+                "depotId": "uri://Customer1/Depot1",
+                "name": "depot1",
+                "chargingStationInfoList": [
+                    {
+                        "chargingStationId": "uri://Customer1/Depot1/CS1",
+                        "chargingStationStatus": "Available",
+                        "chargingPointInfoList": [
+                            {
+                                "chargingPointId": "uri://Customer1/Depot1/CS1/CP1",
+                                "chargingPointStatus": "Available",
+                                "presentPower": 0,
+                                "energyMeterReading": 888000
+                            },
+                            {
+                                "chargingPointId": "uri://Customer1/Depot1/CS1/CP2",
+                                "chargingPointStatus": "Available",
+                                "presentPower": 0,
+                                "energyMeterReading": 999000
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
