@@ -1,4 +1,5 @@
 /**
+ * @author Maik Wöhl
  * @date 2021-08-12
  */
 package de.maikwoehl.tuple_serde;
