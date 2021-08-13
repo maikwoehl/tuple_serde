@@ -5,8 +5,10 @@
 package de.maikwoehl.tuple_serde;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ public class ObjectContainer implements Serializable {
 	private static final long serialVersionUID = -4788686458506140083L;
 	
 	/**
-	 * Method 2 on stack trace should be the real caller as we have a wrapper method for error handling.
+	 * Method 3 on stack trace should be the real caller as we have a wrapper method for error handling.
 	 */
 	private static final int METHOD_ON_STACK_TRACE = 3;
 	
@@ -30,15 +32,20 @@ public class ObjectContainer implements Serializable {
 	private final Object item1;
 	private final Object item2;
 	private final Object item3;
-	private final Object item4;
-	private final Object item5;
+	private final Object item4;	
+	private final Object item5;	
 	private final Object item6;
+	private final Object item7;
+	private final Object item8;
+	private final Object item9;
 	
 	/** Mapping of items */
 	protected final List<String> mappings;
 	
-	public ObjectContainer(List<String> mappings, Object item0, Object item1, Object item2, Object item3, Object item4, Object item5, Object item6)
+	public ObjectContainer(Object item0, Object item1, Object item2, Object item3, Object item4, Object item5, Object item6, Object item7, Object item8, Object item9)
 	{
+		this.mappings = getMappings();
+		
 		this.item0 = item0;
 		this.item1 = item1;
 		this.item2 = item2;
@@ -46,10 +53,23 @@ public class ObjectContainer implements Serializable {
 		this.item4 = item4;
 		this.item5 = item5;
 		this.item6 = item6;
-		
-		this.mappings = mappings;
+		this.item7 = item7;
+		this.item8 = item8;
+		this.item9 = item9;
 	}
 	
+	private List<String> getMappings() {
+		LinkedList<String> mappings = new LinkedList<String>();
+		
+		for (Field item : this.getClass().getDeclaredFields()) {
+			if (item.isAnnotationPresent(Item.class)) {
+				System.out.println("Insert " + item.getName() + " into mappings.");
+				mappings.add(item.getName());
+			}
+		}
+		
+		return mappings;
+	}
 	
 	private Integer getIndexNameFromMappings(String memberName) {
 		return mappings.indexOf(memberName);
@@ -120,7 +140,53 @@ public class ObjectContainer implements Serializable {
 	
 	/* Stub methods */
 	
-	protected Object getItem0() {
+	@SuppressWarnings("unused")
+	private Object getItem0() {
 		return item0;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem1() {
+		return item1;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem2() {
+		return item2;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem3() {
+		return item3;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem4() {
+		return item4;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem5() {
+		return item5;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem6() {
+		return item6;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem7() {
+		return item7;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem8() {
+		return item8;
+	}
+	
+	@SuppressWarnings("unused")
+	private Object getItem9() {
+		return item9;
 	}
 }

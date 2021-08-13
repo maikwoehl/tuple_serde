@@ -5,7 +5,6 @@
 package de.maikwoehl.tuple_serde;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 
 
 /**
@@ -36,22 +35,9 @@ public class MessageStructure extends ObjectContainer implements Serializable {
 	@Item
 	private Object messagePayload;
 	
-	// TODO: Use Item annotation to get a list of FieldNames from Reflection API.
-	@SuppressWarnings("serial")
-	private static final LinkedList<String> mappings = new LinkedList<String>() {{
-		add("messageType");
-		add("messageSource");
-		add("messageURI");
-		add("messageDateTime");
-		add("messageUUID");
-		add("messageAction");
-		add("messagePayload");
-	}};
-
 	public MessageStructure(Integer messageType, String messageSource, String messageURI, String messageDateTime, String messageUUID, String messageAction,
 			Object messagePayload) {
-		super(mappings, messageType, messageSource, messageURI, messageDateTime, messageUUID, messageAction, messagePayload);
-		// TODO Auto-generated constructor stub
+		super(messageType, messageSource, messageURI, messageDateTime, messageUUID, messageAction, messagePayload, null, null, null);
 	}
 
 	@MemberName("messageType")
