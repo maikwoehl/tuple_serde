@@ -1,5 +1,9 @@
 # tuple_serde
 
+[![Java CI with Maven](https://github.com/maikwoehl/tuple_serde/actions/workflows/maven.yml/badge.svg)](https://github.com/maikwoehl/tuple_serde/actions/workflows/maven.yml)
+
+[![Doxygen Action](https://github.com/maikwoehl/tuple_serde/actions/workflows/doxygen.yml/badge.svg)](https://github.com/maikwoehl/tuple_serde/actions/workflows/doxygen.yml)
+
 You can use the ObjectContainer to create your own tuple-like object.
 
 To show how to use it, some boilerplate code is necessary to do some checks:
