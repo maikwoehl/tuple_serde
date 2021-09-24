@@ -6,10 +6,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.maikwoehl</groupId>
-	<artifactId>tuple-serde</artifactId>
+	<artifactId>tuple_serde</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>tuple-serde</name>
+	<name>tuple_serde</name>
 	<url>https://maikwoehl.de</url>
 
 	<properties>
@@ -18,6 +18,14 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<sl4jVersion>1.7.32</sl4jVersion>
 	</properties>
+	
+	<distributionManagement>
+	   <repository>
+	     <id>github</id>
+	     <name>GitHub maikwoehl Apache Maven Packages</name>
+	     <url>https://maven.pkg.github.com/maikwoehl/tuple_serde</url>
+	   </repository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
