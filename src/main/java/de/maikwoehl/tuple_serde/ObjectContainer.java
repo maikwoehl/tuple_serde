@@ -10,43 +10,93 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * @brief The object container help constructing a pseudo-tuple object.
+ * 
+ * Through inheriting from this class you can construct a specialized tuple-like object.
+ * 
+ * ```java
+ * import java.io.Serializable;
+ * import java.util.Objects;
+ * 
+ * import de.maikwoehl.tuple_serde;
+ * 
+ * public class MessageStructure extends ObjectContainer implements Serializable {
+ *   private static final long serialVersionUID = 0L;
+ *   
+ *   @Item
+ *   private Integer messageType;
+ *   
+ *   @Item
+ *   private String messageSource;
+ *   
+ *   @Item 
+ *   private String messagePayload;
+ *   
+ *   public MessageStructure(Integer messageType, String messageSource, String messagePayload) {
+ *     super(messageType, messageSource, messagePayload, null, null, null, null, null, null, null);
+ *   }
+ *   
+ *   @MemberName("messageType")
+ *   public Integer getMessageType() {
+ *     return Objects.isNull(messageType) ? (Integer) invokeMethod() : messageType;
+ *   }
+ *   
+ *   @MemberName("messageSource")
+ *   public String getMessageSource() {
+ *     return Objects.isNull(messageSource) ? (String) invokeMethod() : messageSource;
+ *   }
+ *   
+ *   @MemberName("messagePayload")
+ *   public String getMessagePayload() {
+ *     return Objects.isNull(messagePayload) ? (String) invokeMethod() : messagePayload;
+ *   }
+ * }
+ * ```
+ * 
  * @author mwoehl
- *
+ * @date 2021-08-12 
  */
 public class ObjectContainer implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4788686458506140083L;
 	
+	/**
+	 * @brief logger reference
+	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(ObjectContainer.class);
 	
 	/**
-	 * Method 3 on stack trace should be the real caller as we have a wrapper method for error handling.
+	 * @brief Method 3 on stack trace should be the real caller as we have a wrapper method for error handling.
 	 */
 	private static final int METHOD_ON_STACK_TRACE = 3;
 	
 	/* Private generic values with correct types */
-	private final Object item0;
-	private final Object item1;
-	private final Object item2;
-	private final Object item3;
-	private final Object item4;	
-	private final Object item5;	
-	private final Object item6;
-	private final Object item7;
-	private final Object item8;
-	private final Object item9;
+	private final Object item0;		/**< @brief first generic object */
+	private final Object item1;		/**< @brief second generic object */
+	private final Object item2;		/**< @brief third generic object */
+	private final Object item3;		/**< @brief fourth generic object */
+	private final Object item4;		/**< @brief fifth generic object */
+	private final Object item5;		/**< @brief sixth generic object */
+	private final Object item6;		/**< @brief seventh generic object */
+	private final Object item7;		/**< @brief eighth generic object */
+	private final Object item8;		/**< @brief ninth generic object */
+	private final Object item9;		/**< @brief tenth generic object */
 	
-	/** Mapping of items */
+	/** @brief Internal mapping if member names to internal generic object indizes. */
 	protected final List<String> mappings;
 	
+	/**
+	 * @brief Constructor of ObjectContainer for instantiating an instance.
+	 * 
+	 * The constructor should be called with super() from inheriting class. Not needed arguments
+	 * can be set to _null_.
+	 */
 	public ObjectContainer(Object item0, Object item1, Object item2, Object item3, Object item4, Object item5, Object item6, Object item7, Object item8, Object item9)
 	{
 		this.mappings = getMappings();
@@ -101,7 +151,7 @@ public class ObjectContainer implements Serializable {
 	}
 	
 	/**
-	 * Invokes internal getter method for caller.
+	 * @brief Invokes internal getter method for caller.
 	 * 
 	 * @return returned object of invoked getter method
 	 * @throws IllegalAccessException 		Access to underlying method/field is not allowed.
@@ -184,51 +234,64 @@ public class ObjectContainer implements Serializable {
 	
 	/* Stub methods */
 	
+	/**
+	 * @brief Stub method of first generic object.
+	 * @return first generic object
+	 */
 	@SuppressWarnings("unused")
 	private Object getItem0() {
 		return item0;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem1() {
 		return item1;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem2() {
 		return item2;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem3() {
 		return item3;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem4() {
 		return item4;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem5() {
 		return item5;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem6() {
 		return item6;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem7() {
 		return item7;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem8() {
 		return item8;
 	}
 	
+	/** @see getItem0() */
 	@SuppressWarnings("unused")
 	private Object getItem9() {
 		return item9;
