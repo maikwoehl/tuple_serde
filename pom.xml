@@ -99,7 +99,7 @@
 				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
 				<version>1.1.1</version>
 				<configuration>
-					<sourceDirectory>${basedir}/src/main/resources/vdv463/schema</sourceDirectory>
+					<sourceDirectory>${basedir}/src/main/resources/VDV463/v1.0</sourceDirectory>
 					<targetPackage>de.vdv.vdv463</targetPackage>
 				</configuration>
 				<executions>
