@@ -2,6 +2,7 @@
 *.settings
 .classpath
 *~
+doc
 
 target/
 pom.xml.tag
