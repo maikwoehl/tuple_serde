@@ -88,7 +88,7 @@ public class ObjectContainer implements Serializable {
 		String methodName = e.getMethodName();
 		System.out.println("MethodName: " + methodName);
 		
-		MemberName memberName = null;
+		String memberName = null;
 		Method callerMethod = null;
 		Method getterMethod = null;
 		
@@ -103,12 +103,12 @@ public class ObjectContainer implements Serializable {
 		}
 		
 		if (callerMethod.isAnnotationPresent(MemberName.class)) {
-			memberName = callerMethod.getAnnotation(MemberName.class);
-			System.out.println("MemberName: " + memberName.value()[0]);
+			memberName = (callerMethod.getAnnotation(MemberName.class)).value()[0];
+			System.out.println("MemberName: " + memberName);
 		}
-		
+
 		try {
-			String getterName = getGetterNameOfMember(memberName.value()[0]);
+			String getterName = getGetterNameOfMember(memberName);
 			System.out.println("Getter: " + getterName);
 			System.out.println("Methods in base: ");
 			for (Method method : this.getClass().getSuperclass().getDeclaredMethods()) {
@@ -121,7 +121,17 @@ public class ObjectContainer implements Serializable {
 		}
 		
 		System.out.println("Execute: " + getterMethod.getName());
-		return getterMethod.invoke(this, (Object[]) null);
+		Object returnValue = getterMethod.invoke(this, (Object[]) null);
+		try {
+			Field memberField = this.getClass().getDeclaredField(memberName);
+			memberField.setAccessible(true);
+			memberField.set(this, returnValue);
+		} catch (NoSuchFieldException | SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return returnValue;
 	}
 
 	protected Object invokeMethod() {
