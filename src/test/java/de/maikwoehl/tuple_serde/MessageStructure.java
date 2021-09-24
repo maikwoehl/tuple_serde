@@ -5,6 +5,7 @@
 package de.maikwoehl.tuple_serde;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 
 /**
@@ -42,6 +43,6 @@ public class MessageStructure extends ObjectContainer implements Serializable {
 
 	@MemberName("messageType")
 	public Integer getMessageType() {
-		return (Integer) invokeMethod();
+		return Objects.isNull(messageType) ? (Integer) invokeMethod() : messageType;
 	}
 }

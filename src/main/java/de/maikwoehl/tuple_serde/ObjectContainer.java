@@ -11,6 +11,9 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author mwoehl
  *
@@ -21,6 +24,8 @@ public class ObjectContainer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4788686458506140083L;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ObjectContainer.class);
 	
 	/**
 	 * Method 3 on stack trace should be the real caller as we have a wrapper method for error handling.
@@ -58,12 +63,16 @@ public class ObjectContainer implements Serializable {
 		this.item9 = item9;
 	}
 	
+	/**
+	 * @brief Inserts mappings of index to member field name of derivating class.
+	 * @return List of member field names.
+	 */
 	private List<String> getMappings() {
 		LinkedList<String> mappings = new LinkedList<String>();
 		
 		for (Field item : this.getClass().getDeclaredFields()) {
 			if (item.isAnnotationPresent(Item.class)) {
-				System.out.println("Insert " + item.getName() + " into mappings.");
+				LOGGER.debug("Insert " + item.getName() + " into mappings.");
 				mappings.add(item.getName());
 			}
 		}
@@ -71,14 +80,34 @@ public class ObjectContainer implements Serializable {
 		return mappings;
 	}
 	
+	/**
+	 * @brief Returns the index of given member field name.
+	 * 
+	 * @param memberName member field name
+	 * @return index in internal mapping
+	 */
 	private Integer getIndexNameFromMappings(String memberName) {
 		return mappings.indexOf(memberName);
 	}
 	
+	/**
+	 * @brief Returns internal getter name of given member field name.
+	 * 
+	 * @param memberName member field name to get value of
+	 * @return internal get method name
+	 */
 	private String getGetterNameOfMember(String memberName) {
 		return "getItem" + getIndexNameFromMappings(memberName).toString();
 	}
 	
+	/**
+	 * Invokes internal getter method for caller.
+	 * 
+	 * @return returned object of invoked getter method
+	 * @throws IllegalAccessException 		Access to underlying method/field is not allowed.
+	 * @throws IllegalArgumentException		No method/field for caller method found.
+	 * @throws InvocationTargetException	Method can't be invoked on internal target.
+	 */
 	private Object invokeMethodUnsafe() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		/* Get method name of invoking method from stack trace. As this is the last one, and we have a
 		 * wrapper method, it should be method 2 in the list.
@@ -86,33 +115,33 @@ public class ObjectContainer implements Serializable {
 		StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
 		StackTraceElement e = stacktrace[METHOD_ON_STACK_TRACE];
 		String methodName = e.getMethodName();
-		System.out.println("MethodName: " + methodName);
+		LOGGER.info("MethodName: " + methodName);
 		
-		MemberName memberName = null;
+		String memberName = null;
 		Method callerMethod = null;
 		Method getterMethod = null;
 		
 		try {
-			System.out.println("Scope class: " + this.getClass().getName());
-			System.out.println("Parent class: " + this.getClass().getSuperclass().getName());
+			LOGGER.debug("Scope class: " + this.getClass().getName());
+			LOGGER.debug("Parent class: " + this.getClass().getSuperclass().getName());
 			callerMethod = this.getClass().getDeclaredMethod(methodName, (Class<?>[]) null);
-			System.out.println("Caller: " + callerMethod.getName());
+			LOGGER.debug("Caller: " + callerMethod.getName());
 		} catch (NoSuchMethodException | SecurityException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 		if (callerMethod.isAnnotationPresent(MemberName.class)) {
-			memberName = callerMethod.getAnnotation(MemberName.class);
-			System.out.println("MemberName: " + memberName.value()[0]);
+			memberName = (callerMethod.getAnnotation(MemberName.class)).value()[0];
+			LOGGER.debug("MemberName: " + memberName);
 		}
-		
+
 		try {
-			String getterName = getGetterNameOfMember(memberName.value()[0]);
-			System.out.println("Getter: " + getterName);
-			System.out.println("Methods in base: ");
+			String getterName = getGetterNameOfMember(memberName);
+			LOGGER.debug("Getter: " + getterName);
+			LOGGER.debug("Methods in base: ");
 			for (Method method : this.getClass().getSuperclass().getDeclaredMethods()) {
-				System.out.println(" - " + method.getName());
+				LOGGER.debug(" - " + method.getName());
 			}
 			getterMethod = this.getClass().getSuperclass().getDeclaredMethod(getterName, (Class<?>[]) null);
 		} catch (NoSuchMethodException | SecurityException e1) {
@@ -120,20 +149,35 @@ public class ObjectContainer implements Serializable {
 			e1.printStackTrace();
 		}
 		
-		System.out.println("Execute: " + getterMethod.getName());
-		return getterMethod.invoke(this, (Object[]) null);
+		LOGGER.info("Execute: " + getterMethod.getName());
+		Object returnValue = getterMethod.invoke(this, (Object[]) null);
+		try {
+			Field memberField = this.getClass().getDeclaredField(memberName);
+			memberField.setAccessible(true);
+			memberField.set(this, returnValue);
+		} catch (NoSuchFieldException | SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return returnValue;
 	}
 
+	/**
+	 * @brief Invokes method of decorated MemberName of caller method.
+	 * 
+	 * @return object from internal data model
+	 */
 	protected Object invokeMethod() {
 		Object value = null;
 		try {
 			value = invokeMethodUnsafe();
 		} catch (IllegalAccessException e) {
-			System.err.println("Can't access underlying item.");
+			LOGGER.error("Can't access underlying item.");
 		} catch (IllegalArgumentException e) {
-			System.err.println("Can't invoke with zero objects.");
+			LOGGER.error("Can't invoke with zero objects.");
 		} catch (InvocationTargetException e) {
-			System.err.println("Can't invoke getter.");
+			LOGGER.error("Can't invoke getter.");
 		}
 		return value;
 	}
