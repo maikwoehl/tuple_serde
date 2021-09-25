@@ -17,10 +17,10 @@ import java.lang.annotation.Target;
 @Target(METHOD)
 @Inherited
 /**
- * This annotation makes the MemberName available to internal use of the method.
+ * @brief This annotation makes the MemberName available to internal use of the method.
  * @author mwoehl
- *
+ * @date 2021-08-12
  */
 public @interface MemberName {
-	String[] value();
+	String[] value(); /**< @brief A string value passed as member field name reference. */
 }
