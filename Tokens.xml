@@ -17,6 +17,7 @@
       <Scope>de.maikwoehl.tuple_serde.Item</Scope>
     </TokenIdentifier>
     <Path>interfacede_1_1maikwoehl_1_1tuple__serde_1_1Item.html</Path>
+    <Abstract>This annotation helps finding the items index.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -26,6 +27,7 @@
       <Scope>de.maikwoehl.tuple_serde.MemberName</Scope>
     </TokenIdentifier>
     <Path>interfacede_1_1maikwoehl_1_1tuple__serde_1_1MemberName.html</Path>
+    <Abstract>This annotation makes the MemberName available to internal use of the method.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -36,6 +38,7 @@
     </TokenIdentifier>
     <Path>interfacede_1_1maikwoehl_1_1tuple__serde_1_1MemberName.html</Path>
     <Anchor>a6e3748e549fe9639caa9332d6cefaee2</Anchor>
+    <Abstract>A string value passed as member field name reference.</Abstract>
     <DeclaredIn>MemberName.java</DeclaredIn>
   </Token>
   <Token>
@@ -46,6 +49,7 @@
       <Scope>de.maikwoehl.tuple_serde.ObjectContainer</Scope>
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
+    <Abstract>The object container help constructing a pseudo-tuple object.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -56,6 +60,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>ad34e4b5de71cee4a97ef845f011f2665</Anchor>
+    <Abstract>Constructor of ObjectContainer for instantiating an instance.</Abstract>
     <DeclaredIn>ObjectContainer.java</DeclaredIn>
   </Token>
   <Token>
@@ -79,6 +84,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>abe5c8dd96a95d384711795c7a8325fca</Anchor>
+    <Abstract>Internal mapping if member names to internal generic object indizes.</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -125,6 +131,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a0e2046141015a59cd42cd1109d6ff284</Anchor>
+    <Abstract>Invokes internal getter method for caller.</Abstract>
     <DeclaredIn>ObjectContainer.java</DeclaredIn>
   </Token>
   <Token>
@@ -136,6 +143,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a8fb76888092bb61f9287c7fb7873a39b</Anchor>
+    <Abstract>Stub method of first generic object.</Abstract>
     <DeclaredIn>ObjectContainer.java</DeclaredIn>
   </Token>
   <Token>
@@ -246,6 +254,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>ad1a2138a7f06bcd8c179efc87c771ef5</Anchor>
+    <Abstract>first generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -256,6 +265,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>afd4f89b84a8d106229ce6d805881c082</Anchor>
+    <Abstract>second generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -266,6 +276,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a84697372ed81cdc8b5cfda71e08efbd4</Anchor>
+    <Abstract>third generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -276,6 +287,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>aabad1f12a9e30a38d33b78fd02dff085</Anchor>
+    <Abstract>fourth generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -286,6 +298,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>aa1e76268c29001616c64c791dfd2bef5</Anchor>
+    <Abstract>fifth generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -296,6 +309,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>aa2a3e077a6401deb589bc483f0b5f899</Anchor>
+    <Abstract>sixth generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -306,6 +320,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a06dcbeabd0bb6c9278f63388701828f8</Anchor>
+    <Abstract>seventh generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -316,6 +331,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>ad95e33b982d528f9719ee57f008c0e43</Anchor>
+    <Abstract>eighth generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -326,6 +342,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a1464642641a3103b4ffec77e3ccb0d6d</Anchor>
+    <Abstract>ninth generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -336,6 +353,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a8681685315f77fbe73c04570ae0aa54f</Anchor>
+    <Abstract>tenth generic object</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -356,6 +374,7 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>a00933a0a2a28f571a900df47a3cbd91d</Anchor>
+    <Abstract>logger reference</Abstract>
   </Token>
   <Token>
     <TokenIdentifier>
@@ -366,5 +385,6 @@
     </TokenIdentifier>
     <Path>classde_1_1maikwoehl_1_1tuple__serde_1_1ObjectContainer.html</Path>
     <Anchor>aad4cbf656e545295c612d8438a12303a</Anchor>
+    <Abstract>Method 3 on stack trace should be the real caller as we have a wrapper method for error handling.</Abstract>
   </Token>
 </Tokens>
